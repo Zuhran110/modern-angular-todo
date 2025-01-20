@@ -1,0 +1,27 @@
+p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 1vh;
+}
+.todos{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.todo_item{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 10px;
+}   ul{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 10px;
+}   li{
+    display: flex;
+    gap: 10px;
+}   

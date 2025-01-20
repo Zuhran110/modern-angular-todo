@@ -1,0 +1,42 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+
+    a{
+        text-decoration: none;
+        color: #333;
+    
+        &:hover {
+            color: #666;
+        }
+      }
+    
+    li {
+      a {
+        text-decoration: none;
+        color: #333;
+        
+        &:hover {
+          color: #666;
+        }
+      }
+    }
+  }
