@@ -1,0 +1,114 @@
+<div class="contact-container">
+  <div class="contact-header">
+    <h1>Contact Us</h1>
+    <p>Have questions or feedback? We'd love to hear from you!</p>
+  </div>
+
+  <div class="contact-content">
+    <!-- Contact Form -->
+    <div class="contact-form-section card">
+      <h2>Send us a Message</h2>
+      
+      <!-- Success Message -->
+      <div *ngIf="submitSuccess()" class="success-message">
+        <p>✅ Thank you for your message! We'll get back to you soon.</p>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="submitError()" class="error-message">
+        <p>❌ {{submitError()}}</p>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input 
+            type="text" 
+            id="name"
+            [(ngModel)]="contactForm.name"
+            name="name"
+            placeholder="Your name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input 
+            type="email" 
+            id="email"
+            [(ngModel)]="contactForm.email"
+            name="email"
+            placeholder="your.email@example.com"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject *</label>
+          <input 
+            type="text" 
+            id="subject"
+            [(ngModel)]="contactForm.subject"
+            name="subject"
+            placeholder="What's this about?"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea 
+            id="message"
+            [(ngModel)]="contactForm.message"
+            name="message"
+            placeholder="Tell us more..."
+            rows="5"
+            required
+          ></textarea>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-primary submit-btn"
+          [disabled]="isSubmitting()"
+        >
+          <span *ngIf="!isSubmitting()">Send Message</span>
+          <span *ngIf="isSubmitting()" class="loading-text">
+            <span class="loading-spinner"></span>
+            Sending...
+          </span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info-section card">
+      <h2>Get in Touch</h2>
+      <p>We're here to help! Reach out to us through any of these channels.</p>
+      
+      <div class="contact-info-list">
+        @for (info of contactInfo; track info.title) {
+          <div class="contact-info-item">
+            <div class="contact-icon">{{info.icon}}</div>
+            <div class="contact-details">
+              <h3>{{info.title}}</h3>
+              @if (info.link) {
+                <a [href]="info.link" target="_blank" rel="noopener">{{info.value}}</a>
+              } @else {
+                <span>{{info.value}}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="business-hours">
+        <h3>Business Hours</h3>
+        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+        <p>Saturday: 10:00 AM - 4:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+  </div>
+</div> 

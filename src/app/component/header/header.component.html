@@ -1,10 +1,13 @@
 <header>
-  <h1><a routerLink="/">{{title()}}</a></h1>
-  <nav>
-    <ul>
-      <li><a routerLink="/todoes">todoes</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="header-container">
+    <h1><a routerLink="/">{{title()}}</a></h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/todoes" routerLinkActive="active">Todos</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>

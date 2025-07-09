@@ -1,4 +1,67 @@
+<div class="home-container">
+  <div class="hero-section">
+    <h1>Welcome to Your Todo App</h1>
+    <p class="hero-description">
+      Stay organized, boost productivity, and never miss a task again with our powerful todo application.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/todoes" class="btn btn-primary">Get Started</a>
+      <a routerLink="/about" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
 
-<app-greeting [message]="homeMessage()"/>
-<app-counter/>
-<input placeholder="type something..." type="text" (keyup)="keyupHandler($event)"/>
+  <div class="features-preview">
+    <h2>Why Choose Our Todo App?</h2>
+    <div class="features-grid">
+      <div class="feature-card card">
+        <div class="feature-icon">📝</div>
+        <h3>Easy Task Management</h3>
+        <p>Create, edit, and organize your tasks with an intuitive interface designed for productivity.</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-icon">🔍</div>
+        <h3>Smart Search & Filter</h3>
+        <p>Quickly find what you need with powerful search and filtering capabilities.</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-icon">💾</div>
+        <h3>Local Storage</h3>
+        <p>Your data is automatically saved locally, ensuring you never lose your progress.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section card">
+    <h2>Try It Out</h2>
+    <p>Experience the power of our todo app with these interactive components:</p>
+    
+    <div class="demo-components">
+      <div class="demo-item">
+        <h3>Greeting Component</h3>
+        <app-greeting [message]="homeMessage()"/>
+      </div>
+      
+      <div class="demo-item">
+        <h3>Counter Component</h3>
+        <app-counter/>
+      </div>
+      
+      <div class="demo-item">
+        <h3>Interactive Input</h3>
+        <input 
+          placeholder="Type something and check the console..." 
+          type="text" 
+          (keyup)="keyupHandler($event)"
+          class="demo-input"
+        />
+        <p class="demo-hint">Open browser console to see key events</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section card">
+    <h2>Ready to Get Organized?</h2>
+    <p>Start managing your tasks efficiently today!</p>
+    <a routerLink="/todoes" class="btn btn-primary btn-large">Start Using Todos</a>
+  </div>
+</div>

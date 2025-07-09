@@ -1,4 +1,72 @@
-<input id="todo_item_{{todo().id}}" type="checkbox" [checked]="todo().completed">
-            <label for="todo_item_{{todo().id}}">
-                {{todo().title}}
-            </label>
+<div class="todo-item" [ngClass]="{'completed': todo().completed}">
+  <!-- View Mode -->
+  <div *ngIf="!isEditing()" class="todo-content">
+    <div class="todo-checkbox">
+      <input 
+        type="checkbox" 
+        [id]="'todo_item_' + todo().id"
+        [checked]="todo().completed"
+        (change)="onToggle()"
+        class="todo-checkbox-input"
+      >
+      <label 
+        [for]="'todo_item_' + todo().id"
+        class="todo-label"
+        [ngClass]="{'completed': todo().completed}"
+      >
+        {{todo().title}}
+      </label>
+    </div>
+    
+    <div class="todo-actions">
+      <button 
+        type="button" 
+        class="btn-icon edit-btn"
+        (click)="startEdit()"
+        title="Edit todo"
+      >
+        ✏️
+      </button>
+      <button 
+        type="button" 
+        class="btn-icon delete-btn"
+        (click)="onDelete()"
+        title="Delete todo"
+      >
+        🗑️
+      </button>
+    </div>
+  </div>
+  
+  <!-- Edit Mode -->
+  <div *ngIf="isEditing()" class="todo-edit">
+    <input 
+      type="text" 
+      [value]="editValue()"
+      (input)="editValue.set($any($event.target).value)"
+      (keydown)="onKeyPress($event)"
+      class="edit-input"
+      placeholder="Edit todo..."
+      maxlength="100"
+      autofocus
+    >
+    <div class="edit-actions">
+      <button 
+        type="button" 
+        class="btn btn-primary save-btn"
+        (click)="saveEdit()"
+        title="Save changes"
+      >
+        Save
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-outline cancel-btn"
+        (click)="cancelEdit()"
+        title="Cancel editing"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

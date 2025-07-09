@@ -1,9 +1,107 @@
-<h3>Todoes List</h3>
-<p *ngIf="!todoesItems().length">Loading...</p>
-<ul class="todos">
-    @for (todo of todoesItems(); track todo.id) {
-        <li class="todo_item">
-            <app-todoes-item [todo]="todo"/>
+<div class="todos-container">
+  <div class="todos-header">
+    <h2>Todos List</h2>
+    <div class="todos-stats">
+      <span class="stat-item">
+        <span class="stat-label">Total:</span>
+        <span class="stat-value">{{todoesItems().length}}</span>
+      </span>
+      <span class="stat-item">
+        <span class="stat-label">Completed:</span>
+        <span class="stat-value completed">{{completedCount()}}</span>
+      </span>
+      <span class="stat-item">
+        <span class="stat-label">Pending:</span>
+        <span class="stat-value pending">{{pendingCount()}}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Add New Todo -->
+  <div class="add-todo-section card">
+    <form (ngSubmit)="addNewTodo(newTodoInput.value); newTodoInput.value = ''" class="add-todo-form">
+      <input 
+        #newTodoInput
+        type="text" 
+        placeholder="Add a new todo..." 
+        class="add-todo-input"
+        maxlength="100"
+      >
+      <button type="submit" class="btn btn-primary">Add Todo</button>
+    </form>
+  </div>
+
+  <!-- Search and Filter -->
+  <div class="search-filter-section card">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Search todos..." 
+        (input)="onSearchChange($event)"
+        class="search-input"
+      >
+    </div>
+    <div class="filter-buttons">
+      <button 
+        class="btn btn-outline" 
+        [ngClass]="{'active': filterStatus() === 'all'}"
+        (click)="onFilterChange('all')"
+      >
+        All ({{todoesItems().length}})
+      </button>
+      <button 
+        class="btn btn-outline" 
+        [ngClass]="{'active': filterStatus() === 'pending'}"
+        (click)="onFilterChange('pending')"
+      >
+        Pending ({{pendingCount()}})
+      </button>
+      <button 
+        class="btn btn-outline" 
+        [ngClass]="{'active': filterStatus() === 'completed'}"
+        (click)="onFilterChange('completed')"
+      >
+        Completed ({{completedCount()}})
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading()" class="loading-state card text-center">
+    <div class="loading-spinner"></div>
+    <p>Loading todos...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error() && !loading()" class="error-state card">
+    <div class="error-content">
+      <p class="error-message">{{error()}}</p>
+      <button class="btn btn-primary" (click)="retryLoad()">Retry</button>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading() && !error() && filteredTodos().length === 0" class="empty-state card text-center">
+    <p *ngIf="todoesItems().length === 0">No todos found. Add your first todo above!</p>
+    <p *ngIf="todoesItems().length > 0">No todos match your search criteria.</p>
+  </div>
+
+  <!-- Todos List -->
+  <div *ngIf="!loading() && !error() && filteredTodos().length > 0" class="todos-list">
+    <div class="todos-count">
+      Showing {{filteredTodos().length}} of {{todoesItems().length}} todos
+    </div>
+    <ul class="todos">
+      @for (todo of filteredTodos(); track todo.id) {
+        <li class="todo-item">
+          <app-todoes-item 
+            [todo]="todo"
+            (toggle)="onTodoToggle(todo)"
+            (delete)="onTodoDelete(todo.id)"
+            (edit)="onTodoEdit(todo, $event)"
+          />
         </li>
-    }
-</ul>
+      }
+    </ul>
+  </div>
+</div>

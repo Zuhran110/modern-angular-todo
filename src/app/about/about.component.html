@@ -1,0 +1,52 @@
+<div class="about-container">
+  <div class="hero-section">
+    <h1>About Our Todo App</h1>
+    <p class="hero-description">
+      A modern, feature-rich todo application built with Angular 19. 
+      Stay organized, boost productivity, and never miss a task again.
+    </p>
+  </div>
+
+  <div class="features-section">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      @for (feature of features; track feature.title) {
+        <div class="feature-card card">
+          <div class="feature-icon">{{feature.icon}}</div>
+          <h3>{{feature.title}}</h3>
+          <p>{{feature.description}}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="tech-section card">
+    <h2>Technology Stack</h2>
+    <div class="tech-list">
+      <div class="tech-item">
+        <strong>Frontend Framework:</strong> Angular 19
+      </div>
+      <div class="tech-item">
+        <strong>Language:</strong> TypeScript
+      </div>
+      <div class="tech-item">
+        <strong>Styling:</strong> SCSS with CSS Variables
+      </div>
+      <div class="tech-item">
+        <strong>State Management:</strong> Angular Signals
+      </div>
+      <div class="tech-item">
+        <strong>Data Persistence:</strong> Local Storage
+      </div>
+      <div class="tech-item">
+        <strong>API Integration:</strong> JSONPlaceholder
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section card">
+    <h2>Ready to Get Started?</h2>
+    <p>Start organizing your tasks today with our powerful todo application.</p>
+    <a routerLink="/todoes" class="btn btn-primary">Go to Todos</a>
+  </div>
+</div> 

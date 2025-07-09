@@ -9,14 +9,12 @@ import { HeaderComponent } from "./component/header/header.component";
     <main>
       <router-outlet />
     </main>
-    <router-outlet />
   `,
   styles: [
     `
       main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+        min-height: calc(100vh - 80px);
+        background-color: var(--background-color);
       }
     `
   ],
